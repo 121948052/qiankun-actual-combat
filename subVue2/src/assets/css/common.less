@@ -1,0 +1,108 @@
+@deep: ~">>>";
+// 部分地方两个按钮加间距
+.sh-model, .sh-form, .form-i, .app-form {
+  .sh-btn {
+    margin-right: 10px;
+  }
+}
+// 顶部搜索的表单控件按照UI要求设置为固定宽度260px;所在父级元素分为三等分
+.search-filter {
+  display: flex;
+  @{deep}.sh-select, @{deep}.sh-input-wrapper, @{deep}.sh-input-middle {
+    width: 260px !important;
+  }
+}
+// 表单元素宽度按百分比
+.sh-form {
+  width: 100%;
+  @{deep}.sh-input-wrapper,
+  @{deep}.sh-select,
+  @{deep}.sh-input,
+  @{deep}.sh-input-middle,
+  .editor {
+    width: 100%;
+  }
+  @{deep}textarea.sh-input {
+    height: 100px;
+  }
+}
+// 列表页面
+.top-header, .list-page {
+  position: relative;
+  .search-filter {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    @{deep}.sh-input-wrapper,
+    @{deep}.sh-select {
+      width: 260px;
+      margin: 0 10px;
+    }
+    .form-i {
+      width: 33%;
+      display: inline-block;
+      padding-right: 10px;
+      margin-bottom: 14px;
+      span {
+        margin-right: 10px;
+      }
+    }
+    .last-form {
+      display: flex;
+      align-items: center;
+    }
+    .search-filter-btn {
+      margin-left: 10px;
+    }
+  }
+  .btns-wrap {
+    margin-bottom: 20px;
+    .sh-btn {
+      margin-right: 20px;
+    }
+  }
+  .add-btns {
+    width:100%;
+    text-align:center;
+    .sh-btn {
+      margin: 0 10px;
+    }
+  }
+}
+// 自定义字数限制样式
+.lenStyle {
+  position: absolute;
+  right: 9px;
+  bottom: 6px;
+  color: #6F7E95;
+  background-color: white;
+  padding-left: 5px;
+}
+
+// search-header样式覆盖处理
+.sh-search-header {
+  @{deep}.sh-form-item-label {
+    display: inline-block !important;
+    width: 96px !important;
+  }
+  @{deep}.sh-date-picker-middle, @{deep}.sh-select, @{deep}.sh-input {
+    width: 260px;
+  }
+  @{deep}.sh-form-item > .sh-form-item-content {
+    width: ~'calc(100% - 96px)';
+  }
+}
+@{deep}.tableOprate {
+  a {
+    color: #3377FF;
+    cursor: pointer;
+    padding-right: 10px;
+  }
+}
+// 下拉框已选项字体问题
+@{deep}.sh-select-input {
+  font-size: 12px;
+}
+@{deep}.sh-page {
+  margin-bottom: 16px;
+}

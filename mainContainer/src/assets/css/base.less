@@ -1,0 +1,223 @@
+@import "./color.less";
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+ul, ol {
+  list-style: none;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: @primary-color;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer !important;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+body {
+  background: #EFEFF5;
+  color: @normal-color;
+  font: @font-size-large/1.5 @font-family;
+  min-width: 767px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width : 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d0d5dd;
+  border-radius: 4px;
+}
+
+.sh-table-overflowX, .el-scrollbar__wrap {
+  &::-webkit-scrollbar {
+    height: 16px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+  }
+}
+
+.sh-input-prefix .iconfont {
+  color: #8F9BB3;
+}
+
+.status-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: @component-background;
+  .bg-img {
+    width: 300px;
+  }
+
+  .inner-text {
+    font-size: 18px;
+    margin: 30px 0;
+  }
+}
+
+.print-table {
+  height: min-content;
+}
+
+// 最外层容器
+.outer {
+  padding: 30px 30px 40px 30px;
+}
+
+.placeholder-color {
+  color: @unimportance-color;
+}
+
+.router-inner {
+  padding: @content-padding @page-margin @page-margin-bottom @page-margin;
+  height: initial;
+}
+
+// 公共margin 遵循 上 右 下 左
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-right-40 {
+  margin-right: 40px;
+}
+
+.margin-right-20 {
+  margin-right: 20px;
+}
+
+// 按钮间距差3px
+.margin-right-20 {
+  margin-right: 20px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.margin-left-40 {
+  margin-left: 40px;
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+// 公共 padding 遵循 上 右 下 左
+.padding-bottom-30 {
+  padding-bottom: 30px;
+}
+
+.sh-page {
+  margin-top: 20px;
+}
+.sh-model {
+  overflow: auto;
+}
+// 带有expand的table样式
+.expand-table {
+  .expand-icon-wrap {
+    border-right: 0;
+  }
+  .expand-cell {
+    .sh-table-cell {
+      padding-left: 10px;
+    }
+  }
+}
+
+.init-model-content {
+  padding: 20px 0;
+
+  input {
+    width: 240px;
+  }
+
+  /deep/.phone-message {
+    input {
+      width: 144px;
+    }
+  }
+
+  .message-Button {
+    width: 86px;
+  }
+
+  .ms-display-div {
+    // cursor      : pointer;
+    // color       : #8F9BB3;
+    // padding     : 0;
+    // float       : right;
+    display: flex;
+    justify-content: flex-end;
+    & > span {
+      cursor: pointer;
+      color: #8f9bb3;
+      padding: 0;
+    }
+  }
+
+  .sh-login-Button {
+    margin-top: 17px;
+    width: 240px;
+  }
+
+  .back-login {
+    color: #3377ff;
+  }
+}
+
+.bottom-btn {
+  width: 240px;
+  margin-left: 120px;
+}
+
+// 最优尺寸
+@media only screen and (min-width: 1681px) {
+
+}
+
+// 中型尺寸
+@media only screen and (max-width: 1680px) and (min-width: 1281px) {
+
+}
+
+// 最小尺寸
+@media only screen and (max-width: 1280px) {
+
+}

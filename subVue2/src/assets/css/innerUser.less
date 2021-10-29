@@ -1,0 +1,199 @@
+
+@import "~@/assets/css/base.less";
+.lenStyle {
+  position: absolute;
+  right: 8px;
+  color: #6F7E95;
+}
+@deep: ~">>>";
+.btns {
+  width: 100%;
+  text-align: center;
+  .sh-btn {
+    margin: 0 10px;
+  }
+}
+.appVersion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #EFEFF5;
+  .appVersionLeft {
+    position: relative;
+    float: left;
+    width: 354px;
+    border: 1px solid #EEE;
+    background-color: #FFFFFF;
+    height: ~'calc(100% - 102px)';
+    .leftTop {
+      padding: 14px 20px;
+    }
+    .addMasterMenu {
+      position: absolute;
+      top: 14px;
+      right: 19px;
+    }
+    .wareHouse {
+      height: ~'calc(100% - 110px)';
+      overflow-y: scroll;
+      overflow-x: hidden;
+      li {
+        position: relative;
+        border: 1px solid #EEE;
+        padding: 14px 20px;
+        height: 88px;
+        box-sizing: border-box;
+        cursor: pointer;
+        &:hover {
+          border:1px dashed blue;
+        }
+        .name {
+          font-size: 14px;
+        }
+        .region {
+          font-size: 12px;
+          padding-top: 10px;
+        }
+        .iconfont {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          z-index: 9;
+        }
+      }
+      .activated {
+        margin-right: -1px;
+        color: blue;
+        background-color: white;
+        border:1px solid rgb(180, 180, 180);
+        border-right-width: 0;
+      }
+    }
+  }
+  .appVersionRight {
+    float: left;
+    width: ~'calc(100% - 354px)';
+    height: 100%;
+    padding: 19px;
+    margin-bottom: 50px;
+    background-color: #FFFFFF;
+    div.taskLabel {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 0 8px 0;
+    }
+    .renderTable {
+      @{deep}.sh-input {
+        width: 120px;
+      }
+    }
+  }
+  .appVersionBottom {
+    width: 100%;
+    // height: 63px;
+    padding: 14px 14px 14px 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 30px;
+    margin-bottom: 14px;
+    background-color: #FFFFFF;
+    .sh-btn-primary {
+      margin-right: 10px;
+    }
+    .fTitle {
+      font-weight: 650;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 30px;
+      height: 30px;
+    }
+  }
+}
+.appTitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1F2E4D;
+  margin-bottom: 10px;
+  span {
+    margin-right: 6px;
+    display: inline-block;
+    width: 4px;
+    height: 14px;
+    background: #0673FC;
+    border-radius: 2px;
+  }
+  .itemsCount {
+    padding-left: 10px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.65);
+  }
+  @{deep}.sh-btn-small {
+    position: absolute;
+    right: 20px;
+  }
+}
+.appTitle2 {
+  font-size: 16px;
+}
+.appBlock {
+  width: 100%;
+  padding: 20px 20px 4px 20px;
+  margin-bottom: 14px;
+  background-color: #FFFFFF;
+  box-shadow: -2px 4px 8px rgba(0,0,0,.1);
+  .sh-col {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    font-size: 14px;
+    .label {
+      padding-bottom: 14px;
+      color: rgb(46, 45, 45);
+    }
+    .value {
+      padding-left: 14px;
+      color: rgb(70, 69, 69);
+    }
+  }
+}
+.isLock {
+  position: absolute;
+  top: -25px;
+  right: 100px;
+  width: 40px;
+}
+.isPhoneStatus {
+  width: 54px;
+  height: 18px;
+  margin-left: 40px;
+  padding: 2px 5px;
+  font-size: 10px;
+  color: rgb(51, 119, 255);
+  border-radius: 5px;
+  border: 1px dashed rgb(51, 119, 255);
+  text-align: center;
+}
+@{deep}.sh-row-flex {
+  width: 100%;
+  height: 100%;
+}
+@{deep}.sh-input-wrapper,
+@{deep}.sh-input-middle {
+  width: 100%;
+}
+@{deep}.sh-poptip, .sh-poptip-rel {
+  text-align: left;
+}
+@{deep}.sh-btn.sh-btn-primary {
+  margin-left: 10px;
+}
+.sh-row {
+  padding-bottom: 0;
+}
+#app {
+  background: #EFEFF5;
+}

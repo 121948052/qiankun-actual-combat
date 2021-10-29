@@ -1,0 +1,226 @@
+.main {
+  width : 100%;
+  height: 100%;
+
+  background     : url("../images/login/BG@1.png") no-repeat center center fixed;
+  background-size: cover;
+
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+
+
+  /deep/.right-div {
+    display        : flex;
+    justify-content: center;
+    flex-direction : column;
+    align-items    : center;
+    margin-left    : 60px;
+    .top-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .langs {
+        width: 110px;
+        .sh-select {
+          width: 110px;
+        }
+        .active-icon {
+          left: 17px;
+          color: #145DED;
+        }
+        .sh-select-selection {
+          padding-left: 29px;
+          color: #145DED;
+          background-color: #fff;
+          .sh-select-arrow {
+            color: #145DED;
+          }
+        }
+        .sh-select-dropdown {
+          margin-left: 0;
+        }
+        &:hover {
+          .sh-select-selection {
+            background-color: rgba(255,255,255, .3);
+            color: #fff;
+            .sh-select-arrow {
+              color: #fff;
+            }
+          }
+          .active-icon {
+            color: #fff;
+          }
+        }
+      }
+    }
+    .wrap {
+      perspective        : 500;
+      -webkit-perspective: 500;
+      -moz-perspective   : 500;
+      position           : relative;
+      width              : 400px;
+      height             : 500px;
+
+      .start-rotate {
+        transform        : rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        -moz-transform   : rotateY(180deg);
+        -ms-transform    : rotateY(360deg);
+      }
+
+      .back-rotate {
+        transform        : rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
+        -moz-transform   : rotateY(360deg);
+        -ms-transform    : rotateY(360deg);
+      }
+
+      .content-area {
+        transform-style        : preserve-3d;
+        transition             : 1s;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transition     : 1s;
+        -moz-transform-style   : preserve-3d;
+        -moz-transition        : 1s;
+        -ms-transform-style    : preserve-3d;
+        -ms-transition         : 1s;
+
+        .login-div {
+          position     : absolute;
+          width        : 400px;
+          height       : 460px;
+          background   : #fff;
+          border-radius: 16px;
+          padding      : 0 40px;
+
+          display        : flex;
+          align-items    : center;
+          justify-content: center;
+          flex-direction : column;
+
+          backface-visibility        : hidden;
+          -webkit-backface-visibility: hidden; // Chrome 和 Safari 
+          -moz-backface-visibility   : hidden; // Firefox
+          -ms-backface-visibility    : hidden; // Internet Explorer
+
+          .forget-header-text {
+            font-size    : 18px;
+            font-family  : Microsoft YaHei;
+            font-weight  : 400;
+            color        : rgba(0, 0, 0, 1);
+            line-height  : 20px;
+            margin-bottom: 30px;
+          }
+
+          .tips-p {
+            font-size: 14px;
+            color    : #858585;
+            margin   : 16px 0 30px;
+          }
+          
+          .tips-p-red{
+            font-size: 14px;
+            color    : #F05656;
+            background-color: #FEEFEF;
+            width: 320px;
+            margin   : 10px 0px 10px 0px;
+            text-align: center;
+            font-weight: 400;
+          }
+          // .pasw-ipt {
+          //   margin-top: 3px;
+          // }
+
+          .ms-display-div {
+            width: 320px;
+
+            span {
+              float    : right;
+              color    : #858585;
+              font-size: 14px;
+              cursor   : pointer;
+            }
+          }
+
+          input {
+            width        : 320px;
+            height       : 44px;
+            font-size    : 14px;
+            border-radius: 6px;
+          }
+
+          .sh-input-icon {
+            top: 7px;
+          }
+
+          .icon-success {
+            font-size: 20px;
+            top      : 8px;
+            color    : #07b707;
+          }
+
+          .icon-error {
+            font-size: 20px;
+            top      : 8px;
+            color    : #f05656;
+          }
+
+          .sh-login-Button {
+            width        : 320px;
+            height       : 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size    : 16px;
+            border-radius: 6px;
+            margin-top   : 5px;
+
+            .loading {
+              animation       : circle infinite .75s linear;
+              border          : 2px solid #fff;
+              border-top-color: transparent;
+              border-radius   : 100%;
+            }
+          }
+
+          .forget-btn {
+            margin-top: 10px;
+          }
+
+          .phone-message {
+            input {
+              width: 190px;
+            }
+          }
+
+          .message-Button {
+            width : 120px;
+            height: 42px;
+            line-height: 22px;
+          }
+
+        }
+
+        .back {
+          transform        : rotateY(180deg);
+          -webkit-transform: rotateY(180deg);
+          -moz-transform   : rotateY(180deg);
+          -ms-transform    : rotateY(180deg);
+        }
+
+        .dispaly-none {
+          display: none;
+        }
+
+      }
+
+    }
+  }
+  // 登录页Loading遮罩层透明减淡
+  .fullScreen {
+    background: hsla(0,0%,100%,.98);
+  }
+
+
+}

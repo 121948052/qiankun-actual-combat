@@ -2,12 +2,12 @@
 
 import Vue from 'vue'
 import axios from 'axios'
-import shscUI from 'shsc-ui'
+import antd from 'ant-design-vue'
 import { read, clear } from '@/storage/index'
 import store from '../store'
 import assetsUrl from './../../.config.http.js'
 
-const { Message } = shscUI
+const { Message } = antd
 
 /**
  * 根据环境变量区分各个环境地址

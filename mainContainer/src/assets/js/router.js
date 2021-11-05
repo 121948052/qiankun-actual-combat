@@ -1,6 +1,6 @@
 import commonStore from '@/assets/js/commonStore'
 
-export const projectArr = ['/purchaseServer/']
+export const projectArr = ['/subVue/']
 
 export function getActiveRule (routerPrefix) {
   return (location) => {
@@ -11,7 +11,7 @@ export function getActiveRule (routerPrefix) {
 const hostArr = {
   development: [
     {
-      'shsc-tenant-op-web': '//localhost:9000'
+      'sub-vue': '//localhost:8082'
     }
   ]
 }
@@ -21,15 +21,6 @@ export function getUrl (name) {
   switch (process.env.NODE_ENV) {
     case 'development':
       host = hostArr['development']
-      break
-    case 'production':
-      host = hostArr['production']
-      break
-    case 'test':
-      host = hostArr['test']
-      break
-    case 'uat':
-      host = hostArr['uat']
       break
   }
   for (let i = 0; i < host.length; i++) {
@@ -47,10 +38,10 @@ export function isSubRouter () {
 
 export const MicroApps = [
   {
-    name: 'shsc-tenant-op-web',
-    entry: getUrl('shsc-tenant-op-web'),
+    name: 'sub-vue',
+    entry: getUrl('sub-vue'),
     container: '#root-view',
-    activeRule: getActiveRule('/tenant/'),
+    activeRule: getActiveRule('/subVue/'),
     props: commonStore,
     loader: function (loading) {
       // console.log(loading)

@@ -51,12 +51,12 @@ function render (instance, Vue, App, options) {
         })
       }
     })
-    instance.$mount('#app')
+    instance.$mount(document.querySelector('#root-view').firstElementChild.shadowRoot.querySelector('#app'))
   } else {
     instance = new Vue({
       ...options,
       render: h => h(App)
-    }).$mount('#app')
+    }).$mount(document.querySelector('#root-view').firstElementChild.shadowRoot.querySelector('#app'))
   }
   return instance
 }

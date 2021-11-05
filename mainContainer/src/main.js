@@ -40,7 +40,7 @@ registerMicroApps(
     // }
   }
 )
-
+// setDefaultMountApp('/subVue/page1')
 // 第一个子应用加载完毕回调
 runAfterFirstMounted(() => {
   // console.log(app)
@@ -56,7 +56,10 @@ runAfterFirstMounted(() => {
 start({
   prefetch: false,
   // singular: false,
-  sandbox: false,
+  sandbox: {
+    strictStyleIsolation: true,
+    experimentalStyleIsolation: true
+  },
   fetch (url) {
     return window.fetch(url, {
       cache: 'no-cache'

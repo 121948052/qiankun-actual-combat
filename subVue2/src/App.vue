@@ -9,7 +9,6 @@
 <script>
 
 import { read } from '@/storage'
-import localforage from 'localforage'
 export default {
   name: 'App',
   data () {
@@ -38,7 +37,6 @@ export default {
       }
     },
     clearStrutsTree () {
-      localforage.setItem(this.$store.getters.getStructsTreeKey, [])
     }
   },
   mounted () {
@@ -47,7 +45,6 @@ export default {
       arr: this.catchComponent
     })
     this.go404()
-    this.$shui.size = this.$GAIA_STORE.GAIA_STATE.compoentsSize
     window.addEventListener('beforeunload', e => this.beforeunloadHandler(e))
     window.addEventListener('unload', e => this.unloadHandler(e))
     this.$onGlobalStateChange((state, prev) => {
@@ -69,5 +66,11 @@ export default {
   #app {
     height: 100%;
     width: 100%;
+  }
+  .router-view {
+    height: 100%;
+    > div {
+      height: 100%;
+    }
   }
 </style>

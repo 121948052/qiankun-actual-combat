@@ -1,8 +1,7 @@
 export default [
-  // 业务组织
-  // {
-  //   path: '/tenant/businessGroup/buyer',
-  //   name: '买手管理',
-  //   component: () => import('@/views/BusinessGroup/Buyer/BuyerList.vue')
-  // },
+  {
+    path: '/subVue/page1',
+    name: 'vue子页面1',
+    component: () => import('@/views/Page1.vue')
+  }
 ]

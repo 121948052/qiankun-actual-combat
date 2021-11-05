@@ -50,15 +50,6 @@ export async function bootstrap ({ actions, mutations, state, getters, func, Gai
   })
 
   window.func = func
-
-  // // 监听tab关闭事件
-  // window.addEventListener('tab-close', (res) => {
-  //   console.log('tab-close', res.detail)
-  // })
-  // // 监听tab新增事件
-  // window.addEventListener('tab-add', (res) => {
-  //   console.log('tab-add', res.detail)
-  // })
 }
 
 export async function mount (props = {}) {
@@ -69,7 +60,7 @@ export async function mount (props = {}) {
   Vue.prototype.$onGlobalStateChange = props.onGlobalStateChange
   Vue.prototype.$setGlobalState = props.setGlobalState
 
-  instance = render(instance, Vue, App, { router, store, i18n, scui, gaiaStore })
+  instance = render(instance, Vue, App, { router, store, gaiaStore })
 }
 
 export async function unmount ({ state } = {}) {

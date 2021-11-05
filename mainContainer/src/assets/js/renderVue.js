@@ -5,7 +5,7 @@ import router from '@/router'
 import store from '@/store'
 
 import antd from 'ant-design-vue'
-import 'ant-design-vue/lib/date-picker/style/css'
+import 'ant-design-vue/dist/antd.css'
 
 // 最后引入公共样式
 import '@/assets/css/base.less'

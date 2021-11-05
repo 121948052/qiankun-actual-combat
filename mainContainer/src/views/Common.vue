@@ -1,30 +1,34 @@
 <template>
-  <div id="common">
-    <Layout>
-      <sh-header v-if="$route.path !== '/404'">
-        <sh-tab v-model="currentTab" :list="tabList" @on-click="changeRouter" @on-close="closeRouter"/>
-      </sh-header>
-      <Layout style="flex-direction: row; height: calc(100% - 44px)">
-        <Article class="left-nav" v-if="!hiddenMenu">
-          <left-menu :active="currentTab"/>
-        </Article>
-        <Content class="right-content">
-          <div class="router-view" ref="router">
-            <keep-alive v-show="!isSubRouter()">
-              <router-view></router-view>
-            </keep-alive>
-            <div id="root-view"></div>
-          </div>
-        </Content>
-      </Layout>
-    </Layout>
-  </div>
+  <a-layout id="components-layout-demo-responsive">
+    <a-layout-sider
+      breakpoint="lg"
+      collapsed-width="0"
+    >
+      <div class="logo">Logo</div>
+      <MainMenu />
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header :style="{ background: '#fff', paddingLeft: '20px' }">
+        <TagsMenu :tags="tabsList" @on-click="changeRouter" @on-close="closeRouter" />
+      </a-layout-header>
+      <a-layout-content :style="{ margin: '24px 16px 0' }">
+        <div class="router-view" ref="router" :style="{ padding: '24px', background: '#fff', minHeight: '460px' }">
+          <keep-alive v-show="!isSubRouter()">
+            <router-view></router-view>
+          </keep-alive>
+          <div id="root-view"></div>
+        </div>
+      </a-layout-content>
+      <a-layout-footer style="textAlign: center">
+        Ant Design ©2018 Created by Ant UED
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
 </template>
 
 <script>
-import ShTab from '../components/ShTab'
-import ShHeader from '../components/ShHeader'
-import LeftMenu from '../components/LeftMenu'
+import MainMenu from '../components/MainMenu'
+import TagsMenu from '../components/TagsMenu'
 import { save, read, clear } from '../storage'
 import { isSubRouter } from '../assets/js/router'
 import { mapState, mapMutations } from 'vuex'
@@ -32,9 +36,8 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Common',
   components: {
-    ShTab,
-    ShHeader,
-    LeftMenu
+    MainMenu,
+    TagsMenu
   },
   data () {
     return {
@@ -46,31 +49,44 @@ export default {
   },
   computed: {
     ...mapState({
-      tabList: ({ common }) => common.tabList,
-      stopClose: ({ common }) => common.stopClose
+      tabsList: ({ common }) => common.tabsList,
+      stopClose: ({ common }) => common.stopClose,
+      loaded: ({ loaded }) => loaded
     })
   },
   watch: {
     $route (val) {
       this.countMenuList(val)
     },
-    tabList: {
+    tabsList: {
       deep: true,
       handler: function (val, oldVal) {
-        save('tabList', JSON.stringify(val))
+        save('tabsList', JSON.stringify(val))
       }
     }
   },
   mounted () {
-    this.SET_LOADED_APP(true)
-    const menu = read('menu')
-    if (menu) this.SET_LEFT_MENU(JSON.parse(menu))
-    this.countMenuList(this.$route)
-    const tabList = JSON.parse(read('tabList'))
-    if (tabList && tabList.length > 0) this.SET_TAB_LIST(tabList)
+    this.loginSucceed()
   },
   methods: {
-    ...mapMutations(['SET_TAB_LIST', 'PUSH_TAB_LIST', 'SET_LEFT_MENU', 'SET_LOADED_APP']),
+    ...mapMutations([
+      'SET_TAB_LIST',
+      'PUSH_TAB_LIST',
+      'SET_LEFT_MENU',
+      'SET_LOADED_APP',
+      'GET_ASYNC_ROUTES'
+    ]),
+    loginSucceed () {
+      this.SET_LOADED_APP(true)
+      this.GET_ASYNC_ROUTES()
+      this.countMenuList(this.$route)
+      const tabsList = JSON.parse(read('tabsList'))
+      if (tabsList && tabsList.length > 0) {
+        this.SET_TAB_LIST(tabsList)
+      } else {
+        this.SET_TAB_LIST([{ label: '首页', name: '首页', path: '/main/home', closed: false }])
+      }
+    },
     dispatchEvent (eventName, detail) {
       window.dispatchEvent(new CustomEvent(eventName, { detail: detail }))
     },
@@ -87,7 +103,7 @@ export default {
       this.dispatchEvent('tab-close', { tab, index })
       this.addCustomeEvent('tab-change-new', { event: 'close', args: { tab, index } })
       if (!this.stopClose) {
-        const result = this.tabList.filter(t => t.path !== tab.path)
+        const result = this.tabsList.filter(t => t.path !== tab.path)
         this.SET_TAB_LIST(result)
         this.$router.replace(result[result.length - 1].path)
         // const path = this.$route.fullPath
@@ -125,21 +141,21 @@ export default {
           closed: !query._disClose // 禁止关闭
         }
         if (payload.label) {
-          const index = this.tabList.findIndex(tab => tab.name === payload.name)
+          const index = this.tabsList.findIndex(tab => tab.name === payload.name)
           if (index > -1) {
-            const result = this.$utils.deepCopy(this.tabList)
+            const result = this.$utils.deepCopy(this.tabsList)
             result.splice(index, 1, payload)
             this.SET_TAB_LIST(result)
             this.dispatchEvent('tab-change', { tab: payload, index })
           } else {
             this.PUSH_TAB_LIST(payload)
-            this.dispatchEvent('tab-add', { tab: payload, index: this.tabList.length })
-            this.addCustomeEvent('tab-change-new', { event: 'add', args: { tab: payload, index: this.tabList.length - 1 } })
+            this.dispatchEvent('tab-add', { tab: payload, index: this.tabsList.length })
+            this.addCustomeEvent('tab-change-new', { event: 'add', args: { tab: payload, index: this.tabsList.length - 1 } })
           }
         }
-        // if (payload.label && !this.tabList.find(tab => tab.path === payload.path)) {
+        // if (payload.label && !this.tabsList.find(tab => tab.path === payload.path)) {
         //   this.PUSH_TAB_LIST(payload)
-        //   this.dispatchEvent('tab-add', { tab: payload, index: this.tabList.length })
+        //   this.dispatchEvent('tab-add', { tab: payload, index: this.tabsList.length })
         // }
       }
       clear('currentTabName')
@@ -153,41 +169,15 @@ export default {
   }
 }
 </script>
-<style scoped lang="less">
-
-#common {
-  height : 100%;
-  width  : 100%;
-}
-
-/deep/ .left-nav {
-  height             : 100%;
-  background         : white;
-  flex               : none;
-  -ms-overflow-style : none;
-  scrollbar-width    : none;
-}
-
-/deep/ .left-nav::-webkit-scrollbar {
-  display : none;
-}
-
-.right-content {
-  display        : flex;
-  overflow       : hidden;
-  flex-direction : column;
-  padding        : 14 0 0 14;
-  width          : 100%;
-  height         : 100%;
-
-  .router-view {
-    height     : 100%;
-    overflow-y : auto;
-    background : white;
-
-    /deep/ .home-wraps {
-      height : ~"calc(100vh - 54px)";
-    }
+<style lang="less">
+#components-layout-demo-responsive {
+  height: 100%;
+  .logo {
+    color: white;
+    text-align: center;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
   }
 }
 </style>
